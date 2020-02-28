@@ -47,7 +47,7 @@ function buscarAluno(nome) {
 function matricularAluno(aluno, curso) {
   let alunoCadastrado = alunosDaEscola.findIndex(value => value.nome === aluno);
   if (alunoCadastrado != -1) {
-    alunosDaEscola[alunoCadastrado].cursos.push({nomeDoCurso: curso, dataMatricula: new Date})
+    alunosDaEscola[alunoCadastrado].cursos.push({ nomeDoCurso: curso, dataMatricula: new Date })
     console.log(`O aluno ${aluno} foi cadastrado com sucesso!`);
   } else {
     console.log(`O aluno ${aluno} não está cadastrado!`);
@@ -96,7 +96,9 @@ function aprovarAluno(aluno) {
 
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
   let alunoCadastrado = alunosDaEscola.findIndex(value => value.nome === aluno);
-  let media = alunosDaEscola[alunoCadastrado].notas.toString() != "" ? alunosDaEscola[alunoCadastrado].notas.reduce(reducer) / 3 : 0;
+  let quantidadeNotas = alunosDaEscola[alunoCadastrado].notas.length;
+  let media = alunosDaEscola[alunoCadastrado].notas.toString() != "" ?
+    alunosDaEscola[alunoCadastrado].notas.reduce(reducer) / quantidadeNotas : 0;
 
   if (JSON.stringify(alunosDaEscola[alunoCadastrado].cursos[0]) == undefined) {
     console.log('Aluno não está matriculado em um curso');
@@ -112,5 +114,5 @@ function aprovarAluno(aluno) {
     console.log('Reprovado');
   }
 };
-//aprovarAluno('Bruno')
+//aprovarAluno('Guilherme')
 
