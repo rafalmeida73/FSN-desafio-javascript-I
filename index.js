@@ -29,30 +29,31 @@ function listarAlunos() {
         Faltas do aluno: ${alunos.faltas}
         `
   })
-  return conteudo;
-}
-//console.log(listarAlunos())
+  console.log(conteudo);
+};
+//listarAlunos()
 
 
 function buscarAluno(nome) {
-
-  return alunosDaEscola.find(alunos => alunos.nome === nome) != undefined ?
-    alunosDaEscola.find(alunos => alunos.nome === nome) :
-    `O aluno ${nome} não está cadastrado!`;
-}
-//console.log(buscarAluno('João'))
+  if (alunosDaEscola.find(alunos => alunos.nome === nome) == undefined) {
+    console.log(`O aluno ${nome} não está cadastrado!`)
+  } else {
+    console.log(alunosDaEscola.find(alunos => alunos.nome === nome));
+  }
+};
+//buscarAluno('Edson')
 
 
 function matricularAluno(aluno, curso) {
   let alunoCadastrado = alunosDaEscola.findIndex(value => value.nome === aluno);
   if (alunoCadastrado != -1) {
     alunosDaEscola[alunoCadastrado].cursos.push(curso, new Date)
-    return `O aluno ${aluno} foi cadastrado com sucesso!`
+    console.log(`O aluno ${aluno} foi cadastrado com sucesso!`);
   } else {
-    return `O aluno ${aluno} não está cadastrado!`
+    console.log(`O aluno ${aluno} não está cadastrado!`);
   }
-}
-//console.log(matricularAluno('Edson', 'sla'))
+};
+//matricularAluno('Edson', 'sla')
 
 
 function aplicarFalta(aluno) {
@@ -60,17 +61,17 @@ function aplicarFalta(aluno) {
   let alunoCadastrado = alunosDaEscola.findIndex(value => value.nome === aluno);
 
   if (JSON.stringify(alunosDaEscola[alunoCadastrado].cursos[0]) == undefined) {
-    return `Aluno não está matriculado em um curso`
+    console.log(`Aluno não está matriculado em um curso`);
   }
   else if (alunoCadastrado != -1 && JSON.stringify(alunosDaEscola[alunoCadastrado].cursos[0]) != undefined) {
     alunosDaEscola[alunoCadastrado].faltas += 1
-    return `Falta cadastrada com sucesso!`
+    console.log(`Falta cadastrada com sucesso!`);
     //return 
   } else {
-    return `O aluno ${aluno} não está cadastrado!`
+    console.log(`O aluno ${aluno} não está cadastrado!`);
   }
-}
-//console.log(aplicarFalta('Guilherme'))
+};
+//aplicarFalta('Guilherme')
 
 
 function aplicarNota(aluno) {
@@ -78,17 +79,17 @@ function aplicarNota(aluno) {
   let alunoCadastrado = alunosDaEscola.findIndex(value => value.nome === aluno);
 
   if (JSON.stringify(alunosDaEscola[alunoCadastrado].cursos[0]) == undefined) {
-    return `Aluno não está matriculado em um curso`
+    console.log(`Aluno não está matriculado em um curso`);
   }
   else if (alunoCadastrado != -1 && JSON.stringify(alunosDaEscola[alunoCadastrado].cursos[0]) != undefined) {
     alunosDaEscola[alunoCadastrado].notas.push(10)
-    return `Nota cadastrada com sucesso!`
+    console.log(`Nota cadastrada com sucesso!`);
     //return 
   } else {
-    return `O aluno ${aluno} não está cadastrado!`
+    console.log(`O aluno ${aluno} não está cadastrado!`);
   }
-}
-//console.log(aplicarNota('Guilherme'))
+};
+//aplicarNota('Guilherme')
 
 
 function aprovarAluno(aluno) {
@@ -98,18 +99,18 @@ function aprovarAluno(aluno) {
   let media = alunosDaEscola[alunoCadastrado].notas.toString() != "" ? alunosDaEscola[alunoCadastrado].notas.reduce(reducer) / 3 : 0;
 
   if (JSON.stringify(alunosDaEscola[alunoCadastrado].cursos[0]) == undefined) {
-    return `Aluno não está matriculado em um curso`
+    console.log(`Aluno não está matriculado em um curso`);
   }
   else if (alunoCadastrado != -1
     && JSON.stringify(alunosDaEscola[alunoCadastrado].cursos[0]) != undefined &&
     alunosDaEscola[alunoCadastrado].faltas <= 3 &&
     media >= 7
   ) {
-    return `Aprovado`
-    //return 
+    console.log(`Aprovado`);
+    //console.log() 
   } else {
-    return `Reprovado `
+    console.log(`Reprovado `);
   }
-}
-//console.log(aprovarAluno('Bruno'))
+};
+//aprovarAluno('Bruno')
 
