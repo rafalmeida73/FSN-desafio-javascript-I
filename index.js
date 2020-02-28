@@ -11,10 +11,10 @@ const alunosDaEscola = [
 // implementação
 function adicionarAluno(nome) {
 
-  alunosDaEscola.push({ nome })
+  alunosDaEscola.push( {nome: nome, notas: [], cursos: [], faltas: 0} )
   console.log(`Aluno ${nome} inserido corretamente`);
 };
-//adicionarAluno('Rafael')
+adicionarAluno('Rafael')
 
 
 function listarAlunos() {
