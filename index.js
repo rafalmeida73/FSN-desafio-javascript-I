@@ -47,7 +47,7 @@ function buscarAluno(nome) {
 function matricularAluno(aluno, curso) {
   let alunoCadastrado = alunosDaEscola.findIndex(value => value.nome === aluno);
   if (alunoCadastrado != -1) {
-    alunosDaEscola[alunoCadastrado].cursos.push(curso, new Date)
+    alunosDaEscola[alunoCadastrado].cursos.push({nomeDoCurso: curso, dataMatricula: new Date})
     console.log(`O aluno ${aluno} foi cadastrado com sucesso!`);
   } else {
     console.log(`O aluno ${aluno} não está cadastrado!`);
@@ -61,11 +61,11 @@ function aplicarFalta(aluno) {
   let alunoCadastrado = alunosDaEscola.findIndex(value => value.nome === aluno);
 
   if (JSON.stringify(alunosDaEscola[alunoCadastrado].cursos[0]) == undefined) {
-    console.log(`Aluno não está matriculado em um curso`);
+    console.log('Aluno não está matriculado em um curso');
   }
   else if (alunoCadastrado != -1 && JSON.stringify(alunosDaEscola[alunoCadastrado].cursos[0]) != undefined) {
     alunosDaEscola[alunoCadastrado].faltas += 1
-    console.log(`Falta cadastrada com sucesso!`);
+    console.log('Falta cadastrada com sucesso!');
     //return 
   } else {
     console.log(`O aluno ${aluno} não está cadastrado!`);
@@ -79,11 +79,11 @@ function aplicarNota(aluno) {
   let alunoCadastrado = alunosDaEscola.findIndex(value => value.nome === aluno);
 
   if (JSON.stringify(alunosDaEscola[alunoCadastrado].cursos[0]) == undefined) {
-    console.log(`Aluno não está matriculado em um curso`);
+    console.log('Aluno não está matriculado em um curso');
   }
   else if (alunoCadastrado != -1 && JSON.stringify(alunosDaEscola[alunoCadastrado].cursos[0]) != undefined) {
     alunosDaEscola[alunoCadastrado].notas.push(10)
-    console.log(`Nota cadastrada com sucesso!`);
+    console.log('Nota cadastrada com sucesso!');
     //return 
   } else {
     console.log(`O aluno ${aluno} não está cadastrado!`);
@@ -99,17 +99,17 @@ function aprovarAluno(aluno) {
   let media = alunosDaEscola[alunoCadastrado].notas.toString() != "" ? alunosDaEscola[alunoCadastrado].notas.reduce(reducer) / 3 : 0;
 
   if (JSON.stringify(alunosDaEscola[alunoCadastrado].cursos[0]) == undefined) {
-    console.log(`Aluno não está matriculado em um curso`);
+    console.log('Aluno não está matriculado em um curso');
   }
   else if (alunoCadastrado != -1
     && JSON.stringify(alunosDaEscola[alunoCadastrado].cursos[0]) != undefined &&
     alunosDaEscola[alunoCadastrado].faltas <= 3 &&
     media >= 7
   ) {
-    console.log(`Aprovado`);
+    console.log('Aprovado');
     //console.log() 
   } else {
-    console.log(`Reprovado `);
+    console.log('Reprovado');
   }
 };
 //aprovarAluno('Bruno')
